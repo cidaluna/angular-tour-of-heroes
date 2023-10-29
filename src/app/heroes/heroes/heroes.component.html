@@ -1,17 +1,17 @@
 <h2>My Heroes</h2>
 <ul>
-  <li *ngFor="let item of heroes">
+  <li *ngFor="let item of heroes" (click)="onSelect(item)">
     <span>{{ item.id }}</span> {{ item.name }}
   </li>
 </ul>
 
+<div *ngIf="selectedHero">
+  <h2>Details - {{ selectedHero.name | uppercase }}</h2>
+  <p>Id: {{ selectedHero.id }}</p>
+  <p>Name: {{ selectedHero.name }}</p>
 
-
-<h2>Details - {{ hero.name | uppercase }}</h2>
-<p>Id: {{ hero.id }}</p>
-<p>Name: {{ hero.name }}</p>
-
-<div>
-  <label for="name">Hero name:</label>
-  <input type="text" id="name" [(ngModel)]="hero.name">
+  <div>
+    <label for="name">Hero name:</label>
+    <input type="text" id="name" [(ngModel)]="selectedHero.name" />
+  </div>
 </div>
