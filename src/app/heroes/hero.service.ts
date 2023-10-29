@@ -12,7 +12,7 @@ export class HeroService {
     //return HEROES; // retorno lista de heroes mock, dados sincronos, estão aqui, no mesmo momento que eu peço os dados eu obtenho
     const heroes = of(HEROES); // transforma o mock no Observable
 
-    return throwError(new Error('Ocorreu um problema'));
+    //return throwError(new Error('Ocorreu um problema'));
     return heroes;
   }
 }
