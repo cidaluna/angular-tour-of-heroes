@@ -1,5 +1,6 @@
-# AngularTourOfHeroes
+# Angular Tour Of Heroes
 
+This Tour of Heroes tutorial provides an introduction to the fundamentals of Angular. It is based on the [Tour of Heroes](https://angular.io/tutorial/tour-of-heroes) tutorial.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.16.
 
 ## Development server
