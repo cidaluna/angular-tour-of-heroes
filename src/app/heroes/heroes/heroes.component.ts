@@ -24,17 +24,11 @@ export class HeroesComponent implements OnInit {
     //})
 
     // teste subscribe com exemplo da documentacao rxjs
-    this.heroService.getHero().subscribe({
-        next(x) {
-        console.log('got value ' + JSON.stringify(x, null, 2));
-      },
-      error(err) {
-        console.error('something wrong occurred: ' + err);
-      },
-      complete() {
-        console.log('done');
-      }
-    });
+    this.heroService.getHero().subscribe(
+        (resp) => console.log(resp),
+        (error) => console.error(error),
+        () => console.log('done')
+    );
   }
 
   onSelect(hero: Hero): void{
