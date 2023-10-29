@@ -18,7 +18,11 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes():void{
-    this.heroes = this.heroService.getHero();
+    // subscribe nao sabemos qdo ocorre, mas, qdo ocorre exibe o retorno
+    this.heroService.getHero().subscribe( resp => {
+      this.heroes = resp;
+    })
+
   }
 
   onSelect(hero: Hero): void{
