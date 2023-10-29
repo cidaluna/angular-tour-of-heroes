@@ -1,17 +1,8 @@
 <h2>My Heroes</h2>
 <ul>
-  <li *ngFor="let item of heroes" (click)="onSelect(item)">
+  <li *ngFor="let item of heroes" [class.selected]="item === selectedHero" (click)="onSelect(item)">
     <span>{{ item.id }}</span> {{ item.name }}
   </li>
 </ul>
 
-<div *ngIf="selectedHero">
-  <h2>Details - {{ selectedHero.name | uppercase }}</h2>
-  <p>Id: {{ selectedHero.id }}</p>
-  <p>Name: {{ selectedHero.name }}</p>
-
-  <div>
-    <label for="name">Hero name:</label>
-    <input type="text" id="name" [(ngModel)]="selectedHero.name" />
-  </div>
-</div>
+<app-hero-detail [heroDetail]="selectedHero"></app-hero-detail>
