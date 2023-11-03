@@ -3,7 +3,7 @@
 This Tour of Heroes tutorial provides an introduction to the fundamentals of Angular. It is based on the [Tour of Heroes](https://angular.io/tutorial/tour-of-heroes) tutorial.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.16.
 
-![Página Web com um mural de nome de heróis - Tutorial TOUR OF HEROES](https://github.com/cidaluna/angular-tour-of-heroes/src/assets/md-tour-of-heroes-angular-tutorial-cida-luna.png)
+![Página Web com um mural de nome de heróis - Tutorial TOUR OF HEROES](https://github.com/cidaluna/angular-tour-of-heroes/blob/lunabranch/src/assets/md-tour-of-heroes-angular-tutorial-cida-luna.png)
 
 ## Development server
 
