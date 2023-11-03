@@ -1,7 +1,7 @@
 <h2>Dashboard</h2>
 
 <div class="containercards">
-  <mat-card id="cardsfilhos" *ngFor="let item of heroes">
+  <mat-card id="cardsfilhos" *ngFor="let item of heroes" routerLink="/heroes/{{ item.id }}">
     <mat-card-title>{{ item.name }}</mat-card-title>
   </mat-card>
 </div>
