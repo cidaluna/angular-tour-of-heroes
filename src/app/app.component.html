@@ -5,7 +5,7 @@
     <button mat-icon-button aria-label="Example icon button with a dashboard"
     routerLink="/dashboard"
     matTooltip="Dashboard">
-      <mat-icon>dashborad</mat-icon>
+      <mat-icon>dashboard</mat-icon>
     </button>
 
     <button mat-icon-button aria-label="Example icon button with a sport martial arts"
@@ -18,5 +18,7 @@
 
 <div class="content">
   <router-outlet></router-outlet> <!-- Renderizar os componentes por meio das rotas -->
-  <app-messages></app-messages>
+  <div class="content_messages">
+    <app-messages></app-messages>
+  </div>
 </div>

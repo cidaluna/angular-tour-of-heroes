@@ -1,0 +1,11 @@
+.containercards{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 50px;
+}
+
+#cardsfilhos{
+  color: violet;
+  margin: 8px 0px;
+}

@@ -5,3 +5,7 @@
 .example-spacer{
   flex: 1 1 auto;
 }
+
+.content_messages{
+  margin-top: 20px;
+}
