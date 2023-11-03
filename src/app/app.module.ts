@@ -6,14 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { HeroDetailComponent } from './heroes/hero-detail/hero-detail.component';
-import { HeroesComponent } from './heroes/heroes/heroes.component';
+import { HeroesModule } from './heroes/heroes.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeroesComponent,
-    HeroDetailComponent
+    AppComponent
    ],
   imports: [
     // @angular
@@ -22,6 +19,7 @@ import { HeroesComponent } from './heroes/heroes/heroes.component';
     BrowserAnimationsModule,
     // feature
     DashboardModule,
+    HeroesModule,
     // app
     CoreModule,
     AppRoutingModule
