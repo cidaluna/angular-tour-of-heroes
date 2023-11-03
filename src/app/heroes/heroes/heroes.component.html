@@ -1,7 +1,19 @@
 <h1>My Heroes</h1>
-<ul>
-  <li *ngFor="let item of heroes"
-  routerLink="/heroes/{{ item.id }}">
-    <span>{{ item.id }}</span> {{ item.name }}
-  </li>
-</ul>
+
+<mat-table [dataSource]="heroes">
+  <!-- Id Definition -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
+  </ng-container>
+
+  <!-- Name Definition -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
+  </ng-container>
+
+  <!-- Header and Row Declarations -->
+  <mat-header-row *matHeaderRowDef="['id', 'name']"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['id', 'name']"></mat-row>
+</mat-table>
