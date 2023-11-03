@@ -14,6 +14,8 @@
   </ng-container>
 
   <!-- Header and Row Declarations -->
-  <mat-header-row *matHeaderRowDef="['id', 'name']"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: ['id', 'name']"></mat-row>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"
+  [routerLink]="['/heroes', row.id]" ></mat-row>
+  <!-- Outra opção mais comum, seria routerLink igual a /heroes/{{ row.id }} -->
 </mat-table>
