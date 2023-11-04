@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { Hero } from '../models/hero.model';
 import { MessageService } from './message.service';
 
@@ -10,7 +10,6 @@ import { MessageService } from './message.service';
 })
 export class HeroService {
 
-  loading: boolean = false;
   private heroesUrl = 'api/heroes';
 
   constructor(private http: HttpClient, private messageService: MessageService){}
@@ -32,13 +31,11 @@ export class HeroService {
 
   // GET /heroes
   getHero(): Observable<Hero[]>{
-    this.loading = true;
     return this.http.get<Hero[]>(this.heroesUrl).pipe(
       tap((resp) => {
           this.log(`fetched ${resp.length} hero(es).`)
         }
-      ),
-      finalize(()=> this.loading = false)); // passa sempre aqui, independente se der sucesso ou erro
+      ))
   }
 
   // GET /heroes/id

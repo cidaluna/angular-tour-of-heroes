@@ -11,7 +11,7 @@ export class HeroesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name'];
   heroes: Hero[] = [];
 
-  constructor(public heroService: HeroService){}
+  constructor(private heroService: HeroService){}
 
   ngOnInit(){
     this.getHeroes();

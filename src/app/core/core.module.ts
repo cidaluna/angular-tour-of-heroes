@@ -2,15 +2,16 @@ import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
+import { LoadingComponent } from './components/loading/loading.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { PageNotFoundComponent } from './components/page-not-found.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
-const COMPONENTS = [MessagesComponent, ToolbarComponent, PageNotFoundComponent];
+const COMPONENTS = [MessagesComponent, ToolbarComponent, PageNotFoundComponent, LoadingComponent];
 const MODULES = [MaterialModule, RouterModule];
 
 @NgModule({
-  declarations: [COMPONENTS],
+  declarations: [COMPONENTS ],
   imports: [CommonModule, MODULES],
   exports:[COMPONENTS, MODULES]
 })
