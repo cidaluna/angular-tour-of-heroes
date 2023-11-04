@@ -1,4 +1,5 @@
 <h1>My Heroes</h1>
+<mat-spinner *ngIf="heroService.loading"></mat-spinner>
 
 <mat-table [dataSource]="heroes" class="mat-elevation-z8">
   <!-- Id Definition -->
