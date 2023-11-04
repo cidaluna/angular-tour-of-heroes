@@ -19,7 +19,7 @@ export class HeroesComponent implements OnInit {
 
   getHeroes():void{
     // subscribe nao sabemos qdo ocorre, mas, qdo ocorre exibe o retorno
-    this.heroService.getHero().subscribe( resp => {
+    this.heroService.getAll().subscribe( resp => {
       this.heroes = resp;
     });
   }

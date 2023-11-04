@@ -30,7 +30,7 @@ export class HeroService {
   */
 
   // GET /heroes
-  getHero(): Observable<Hero[]>{
+  getAll(): Observable<Hero[]>{
     return this.http.get<Hero[]>(this.heroesUrl).pipe(
       tap((resp) => {
           this.log(`fetched ${resp.length} hero(es).`)
@@ -39,7 +39,7 @@ export class HeroService {
   }
 
   // GET /heroes/id
-  getHeroId(id: number): Observable<Hero>{
+  getOne(id: number): Observable<Hero>{
     return this.http.get<Hero>(`${this.heroesUrl}/${id}`).pipe(
       tap((resp) => {
         this.log(`fetched hero id=${id} and name=${resp.name}`)
@@ -49,5 +49,15 @@ export class HeroService {
 
   private log(message: string): void{
     this.messageService.add(`Hero service: ${message}`)
+  }
+
+  // PUT /heroes/id
+  updateHero(hero: Hero): Observable<Hero>{
+    // passar no put a url com id, mais o objeto heroDetail
+    return this.http.put<Hero>(`${this.heroesUrl}/${hero.id}`, hero).pipe(
+      tap((hero) =>
+        this.log(`Updated hero id = ${hero.id} and name = ${hero.name}`)
+      )
+    );
   }
 }
