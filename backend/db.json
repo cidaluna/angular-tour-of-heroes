@@ -2,7 +2,7 @@
   "heroes": [
     {
       "id": "1",
-      "name": "Wolverine 10"
+      "name": "Wolverine"
     },
     {
       "id": "2",
@@ -37,24 +37,8 @@
       "name": "Homem de Ferro123"
     },
     {
-      "id": "10",
-      "name": "Capitão América"
-    },
-    {
-      "name": "Cida Luna",
-      "id": "rXSBhz9"
-    },
-    {
-      "name": "Manoel",
-      "id": "snEIrxn"
-    },
-    {
-      "name": "Teste",
-      "id": "ecNRZzo"
-    },
-    {
-      "name": "jherty34567uhr",
-      "id": "tV3x5x4"
+      "name": "Aparecida de Luna Gonçalves",
+      "id": "i0Fhu5T"
     }
   ]
 }

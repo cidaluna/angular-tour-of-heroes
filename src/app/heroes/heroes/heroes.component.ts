@@ -24,4 +24,13 @@ export class HeroesComponent implements OnInit {
     });
   }
 
+  excluir(hero: Hero): void {
+    this.heroService.deleteHero(hero).subscribe(() => {
+      // utilizando o filter, ele percorre a lista e remove, sem precisar chamar novamente a lista com o getHeroes
+      // uma chamada a menos para o Backend
+      //this.heroes = this.heroes.filter((h) => h !== hero) // true or
+      this.getHeroes(); // dessa forma, é feito chamada para o backend novamente
+    });
+  }
+
 }

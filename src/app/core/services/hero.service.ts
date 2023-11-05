@@ -40,7 +40,7 @@ export class HeroService {
 
   // GET /heroes/id
   getOne(id: number): Observable<Hero>{
-    return this.http.get<Hero>(`${this.heroesUrl}/${id}`).pipe(
+    return this.http.get<Hero>(this.getUrl(id)).pipe(
       tap((resp) => {
         this.log(`Fetched ${this.descAttributes(resp)}`)
       }
@@ -59,9 +59,19 @@ export class HeroService {
   // PUT /heroes/id
   updateHero(hero: Hero): Observable<Hero>{
     // passar no put a url com id, mais o objeto heroDetail
-    return this.http.put<Hero>(`${this.heroesUrl}/${hero.id}`, hero).pipe(
+    return this.http.put<Hero>(this.getUrl(Number(hero.id)), hero).pipe(
       tap((resp) =>
         this.log(`Updated ${this.descAttributes(resp)}`)
+      )
+    );
+  }
+
+  // DELETE /heroes/id
+  // Backend retorna status 204 e nada a mais
+  deleteHero(hero: Hero): Observable<any>{
+    return this.http.delete<any>(this.getUrl(Number(hero.id))).pipe(
+      tap(() =>
+        this.log(`Deleted ${this.descAttributes(hero)}`)
       )
     );
   }
@@ -72,5 +82,9 @@ export class HeroService {
 
   private descAttributes(hero: Hero): string {
     return ` hero id = ${hero.id} and name = ${hero.name}. `;
+  }
+
+  private getUrl(id: number): string {
+    return `${this.heroesUrl}/${id}`;
   }
 }
