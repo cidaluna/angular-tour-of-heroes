@@ -8,7 +8,7 @@ import { HeroService } from '../../core/services/hero.service';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name'];
+  displayedColumns: string[] = ['id', 'name', 'actions'];
   heroes: Hero[] = [];
 
   constructor(private heroService: HeroService){}
