@@ -1,0 +1,13 @@
+<mat-dialog-content>
+  <p class="mat-body-1">{{ dados.content }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">
+    {{ dados.cancelText }}
+  </button>
+
+  <button mat-button [mat-dialog-close]="true">
+    {{ dados.confirmText }}
+  </button>
+</mat-dialog-actions>
