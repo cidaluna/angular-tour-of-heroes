@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Hero } from '../models/hero.model';
 import { MessageService } from './message.service';
@@ -46,6 +46,22 @@ export class HeroService {
       }
     ))
   }
+
+  // GET /heroes/?name=term
+  // query string
+  search(term: string): Observable<Hero[]>{
+    if(!term.trim()){
+      return of([]); // retorna um array vazio como Observable por causa do uso do of
+    }
+
+    return this.http.get<Hero[]>(`${this.heroesUrl}?name=${term}`).pipe(
+      tap((resp) => {
+        resp.length ? this.log(`Found ${resp.length} hero(es) matching ${term}`)
+                    : this.log(`No hero(es) matching ${term}`)
+      }
+    ));
+  }
+
 
   // POST/heroes/new
   createHero(hero: Hero): Observable<Hero>{
