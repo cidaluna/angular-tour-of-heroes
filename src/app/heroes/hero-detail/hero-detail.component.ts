@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../../core/models/hero.model';
 import { HeroService } from '../../core/services/hero.service';
@@ -23,8 +24,9 @@ export class HeroDetailComponent implements OnInit {
     private fb: FormBuilder,
     private heroService: HeroService, //buscar Hero
     private location: Location, // historico do navegador
-    private route: ActivatedRoute
-  ) {} // mantem as informacoes sobre o momento da rota atual
+    private route: ActivatedRoute, // mantem as informacoes sobre o momento da rota atual
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.getHero();
@@ -58,6 +60,8 @@ export class HeroDetailComponent implements OnInit {
       } as Hero;
 
       this.heroService.createHero(myHero).subscribe(() => this.goBack());
+    }else{
+      this.showErrorsMsg();
     }
 }
 
@@ -71,6 +75,15 @@ export class HeroDetailComponent implements OnInit {
       };
 
       this.heroService.updateHero(myHero).subscribe(() => this.goBack());
+    }else{
+      this.showErrorsMsg();
     }
+  }
+
+  private showErrorsMsg(): void {
+    this.snackBar.open('Please check the errors found.', 'Ok', {
+      duration: 5000,
+      verticalPosition: 'top',
+    })
   }
 }
