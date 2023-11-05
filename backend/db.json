@@ -2,11 +2,11 @@
   "heroes": [
     {
       "id": "1",
-      "name": "Wolverine"
+      "name": "Wolverine 1"
     },
     {
       "id": "2",
-      "name": "d grd"
+      "name": "Homem Aranha"
     },
     {
       "id": "3",
@@ -14,7 +14,7 @@
     },
     {
       "id": "4",
-      "name": "Mulher Maravilha 01"
+      "name": "Mulher Maravilha"
     },
     {
       "id": "5",
@@ -39,6 +39,18 @@
     {
       "id": "10",
       "name": "Capitão América"
+    },
+    {
+      "name": "Cida Luna",
+      "id": "rXSBhz9"
+    },
+    {
+      "name": "Manoel",
+      "id": "snEIrxn"
+    },
+    {
+      "name": "Teste",
+      "id": "ecNRZzo"
     }
   ]
 }

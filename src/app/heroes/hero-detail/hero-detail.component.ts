@@ -11,6 +11,7 @@ import { HeroService } from '../../core/services/hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   heroDetail!: Hero;
+  isEditing!: boolean;
 
   constructor(
     private heroService: HeroService, //buscar Hero
@@ -23,10 +24,19 @@ export class HeroDetailComponent implements OnInit {
   }
 
   getHero(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getOne(id).subscribe((resp) => {
-      this.heroDetail = resp;
-    });
+    const paramId = this.route.snapshot.paramMap.get('id');
+
+    if(paramId === 'new'){
+      this.isEditing = false;
+      this.heroDetail = { name: ''} as Hero;
+    }else{
+      this.isEditing = true;
+      const id = Number(paramId);
+      this.heroService.getOne(id).subscribe((resp) => {
+        this.heroDetail = resp;
+      });
+    }
+
   }
 
   goBack(): void {
@@ -34,6 +44,10 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save() {
+    this.heroService.createHero(this.heroDetail).subscribe(() => this.goBack());
+  }
+
+  edit() {
     this.heroService.updateHero(this.heroDetail).subscribe(() => this.goBack());
   }
 

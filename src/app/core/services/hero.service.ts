@@ -42,22 +42,35 @@ export class HeroService {
   getOne(id: number): Observable<Hero>{
     return this.http.get<Hero>(`${this.heroesUrl}/${id}`).pipe(
       tap((resp) => {
-        this.log(`fetched hero id=${id} and name=${resp.name}`)
+        this.log(`Fetched ${this.descAttributes(resp)}`)
       }
     ))
   }
 
-  private log(message: string): void{
-    this.messageService.add(`Hero service: ${message}`)
+  // POST/heroes/new
+  createHero(hero: Hero): Observable<Hero>{
+    return this.http.post<Hero>(this.heroesUrl, hero).pipe(
+      tap((resp) =>
+        this.log(`Created ${this.descAttributes(resp)}`)
+      )
+    )
   }
 
   // PUT /heroes/id
   updateHero(hero: Hero): Observable<Hero>{
     // passar no put a url com id, mais o objeto heroDetail
     return this.http.put<Hero>(`${this.heroesUrl}/${hero.id}`, hero).pipe(
-      tap((hero) =>
-        this.log(`Updated hero id = ${hero.id} and name = ${hero.name}`)
+      tap((resp) =>
+        this.log(`Updated ${this.descAttributes(resp)}`)
       )
     );
+  }
+
+  private log(message: string): void{
+    this.messageService.add(`Hero service: ${message}!!!`)
+  }
+
+  private descAttributes(hero: Hero): string {
+    return ` hero id = ${hero.id} and name = ${hero.name}. `;
   }
 }
