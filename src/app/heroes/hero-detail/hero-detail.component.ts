@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../../core/models/hero.model';
 import { HeroService } from '../../core/services/hero.service';
@@ -12,8 +13,14 @@ import { HeroService } from '../../core/services/hero.service';
 export class HeroDetailComponent implements OnInit {
   heroDetail!: Hero;
   isEditing!: boolean;
+  // Trabalhando com formulário reativo
+  form = this.fb.group({
+    id: [{ value: '', disabled: true}],
+    name: ['', [Validators.required, Validators.minLength(3)]]
+  })
 
   constructor(
+    private fb: FormBuilder,
     private heroService: HeroService, //buscar Hero
     private location: Location, // historico do navegador
     private route: ActivatedRoute
@@ -26,14 +33,13 @@ export class HeroDetailComponent implements OnInit {
   getHero(): void {
     const paramId = this.route.snapshot.paramMap.get('id');
 
-    if(paramId === 'new'){
-      this.isEditing = false;
-      this.heroDetail = { name: ''} as Hero;
-    }else{
+    if(paramId !== 'new'){
       this.isEditing = true;
       const id = Number(paramId);
       this.heroService.getOne(id).subscribe((resp) => {
         this.heroDetail = resp;
+        this.form.controls['id'].setValue(resp.id);
+        this.form.controls['name'].setValue(resp.name);
       });
     }
 
@@ -43,20 +49,28 @@ export class HeroDetailComponent implements OnInit {
     this.location.back();
   }
 
-  save() {
-    this.heroService.createHero(this.heroDetail).subscribe(() => this.goBack());
-  }
+  save(): void {
+    const { valid, value } = this.form;
 
-  edit() {
-    this.heroService.updateHero(this.heroDetail).subscribe(() => this.goBack());
-  }
+    if(valid){
+      const myHero: Hero = {
+        name: value.name,
+      } as Hero;
 
-  isValid(): boolean{
-    // se remover os caracteres ou colocar só espaços, não habilita o botao save
-    return !!this.heroDetail.name.trim();
-    // negando 2x porque:
-    // se vier vazio = ' '
-    // negar o vazio 1x = ! vira true
-    // negar o vazio 2x = !! vira false
+      this.heroService.createHero(myHero).subscribe(() => this.goBack());
+    }
+}
+
+  edit(): void {
+    const { valid, value } = this.form; // forma diferente, desestruturando o objeto
+
+    if(valid){
+      const myHero: Hero = {
+        id: this.heroDetail.id,
+        name: value.name,
+      };
+
+      this.heroService.updateHero(myHero).subscribe(() => this.goBack());
+    }
   }
 }
