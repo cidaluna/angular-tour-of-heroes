@@ -1,1 +1,12 @@
-<p>hero-search works!</p>
+<p>Buscar</p>
+<mat-form-field appearance="fill" class="input-width">
+  <mat-label>{{ label }}</mat-label>
+  <input matInput placeholder="Hero Name" type="text" #searchVarBox /> <!-- criando variavel de template -->
+
+  <button mat-icon-button matSuffix
+  *ngIf="searchVarBox.value"
+  (click)="searchVarBox.value='' "
+  > <!-- Se existir a variavel de template digitada mostra o botao close -->
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>

@@ -47,11 +47,11 @@ export class HeroService {
     ))
   }
 
-  // GET /heroes/?name=term
+  // GET /heroes/?name=term&age=abc
   // query string
   search(term: string): Observable<Hero[]>{
     if(!term.trim()){
-      return of([]); // retorna um array vazio como Observable por causa do uso do of
+      return of([]); // retorna um array vazio se nao for digitado nada no termo e é como Observable por causa do uso do of
     }
 
     return this.http.get<Hero[]>(`${this.heroesUrl}?name=${term}`).pipe(
