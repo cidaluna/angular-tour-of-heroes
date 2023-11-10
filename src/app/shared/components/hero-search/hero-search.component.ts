@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable, Subject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Hero } from 'src/app/core/models/hero.model';
 import { HeroService } from 'src/app/core/services/hero.service';
 
@@ -25,6 +25,8 @@ export class HeroSearchComponent implements OnInit{
   ngOnInit(): void {
     // chamada ao serviço de busca atraves do switchMap
     this.heroes$ = this.searchTerm.pipe(
+      debounceTime(700), // 600 milisegundos
+      distinctUntilChanged(), // executa se o valor for diferente do que ja foi digitado
       switchMap((resp) => this.heroService.search(resp))
     );
   }
@@ -36,7 +38,6 @@ export class HeroSearchComponent implements OnInit{
   onSelected(selectedItem: MatAutocompleteSelectedEvent): void {
     this.searchTerm.next('');
     const hero: Hero = selectedItem.option.value;
-
     this.selected.emit(hero); // emite um valor(hero) pra quem estiver ouvindo
   }
 
