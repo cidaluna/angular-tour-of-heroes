@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Hero } from 'src/app/core/models/hero.model';
 
 @Component({
   selector: 'app-hero-search',
@@ -7,8 +9,13 @@ import { Component, Input } from '@angular/core';
 })
 export class HeroSearchComponent {
 
+  heroes$!: Observable<Hero[]>;
+
   @Input() label: string = '';
 
+  search(term: string): void {
+    console.log(term);
+  }
 
 
 

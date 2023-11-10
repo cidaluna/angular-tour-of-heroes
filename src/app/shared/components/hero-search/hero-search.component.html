@@ -1,12 +1,19 @@
-<p>Buscar</p>
 <mat-form-field appearance="fill" class="input-width">
   <mat-label>{{ label }}</mat-label>
-  <input matInput placeholder="Hero Name" type="text" #searchVarBox /> <!-- criando variavel de template -->
+  <input matInput placeholder="Hero Name" type="text" #searchVarBox (input)="search(searchVarBox.value)"/> <!-- criando variavel de template -->
 
   <button mat-icon-button matSuffix
   *ngIf="searchVarBox.value"
   (click)="searchVarBox.value='' "
-  > <!-- Se existir a variavel de template digitada mostra o botao close -->
+  > <!-- Se existir a variavel de template digitada mostra o botao close
+         Ao clicar no ícone de fechar ele atribui string vazia ao input
+  -->
     <mat-icon>close</mat-icon>
   </button>
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="searchVarBox.value='' ">
+    <mat-option *ngFor="let item of heroes$ | async" [value]="item">
+      {{ item.name }}
+    </mat-option>
+  </mat-autocomplete>
 </mat-form-field>
