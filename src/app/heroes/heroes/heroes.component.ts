@@ -40,7 +40,7 @@ export class HeroesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((resp) => {
-      console.log(resp);
+      //console.log(resp);
       if(resp){
         this.heroService.deleteHero(hero).subscribe(() => {
           // utilizando o filter, ele percorre a lista e remove, sem precisar chamar novamente a lista com o getHeroes
@@ -54,6 +54,8 @@ export class HeroesComponent implements OnInit {
 
   }
 
-
+  onSelected(hero: Hero): void {
+    this.excluir(hero);
+  }
 
 }
