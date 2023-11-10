@@ -6,4 +6,5 @@
   </mat-card>
 </div>
 
-<app-hero-search [label]="'Hero Search '"></app-hero-search>
+<!-- Quando for emitido o selected -->
+<app-hero-search [label]="'Hero Search '" (selected)="onSelected($event)"></app-hero-search>

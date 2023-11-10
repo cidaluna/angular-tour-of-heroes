@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Hero } from '../core/models/hero.model';
 import { HeroService } from '../core/services/hero.service';
 
@@ -9,7 +10,7 @@ import { HeroService } from '../core/services/hero.service';
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService, private router: Router) { }
 
   ngOnInit(): void {
     this.getHeroes();
@@ -19,6 +20,10 @@ export class DashboardComponent implements OnInit {
     this.heroService.getAll().subscribe(resp => {
       this.heroes = resp.slice(1,5);  //slice vai pegar os dados do Array da posição 1,2,3 e 4
     })
+  }
+
+  onSelected(hero: Hero): void {
+    this.router.navigate(['/heroes', hero.id]);
   }
 
 }

@@ -1,6 +1,6 @@
 <mat-form-field appearance="fill" class="input-width">
   <mat-label>{{ label }}</mat-label>
-  <input matInput placeholder="Hero Name" type="text" #searchVarBox (input)="search(searchVarBox.value)"/> <!-- criando variavel de template -->
+  <input matInput [matAutocomplete]="autoABC" placeholder="Hero Name" type="text" #searchVarBox (input)="search(searchVarBox.value)"/> <!-- criando variavel de template -->
 
   <button mat-icon-button matSuffix
   *ngIf="searchVarBox.value"
@@ -11,7 +11,9 @@
     <mat-icon>close</mat-icon>
   </button>
 
-  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="searchVarBox.value='' ">
+  <mat-autocomplete #autoABC="matAutocomplete"
+    (optionSelected)="onSelected($event); searchVarBox.value='' ">
+    <!-- O uso de pipe | async representa um subscribe, porém, no template html -->
     <mat-option *ngFor="let item of heroes$ | async" [value]="item">
       {{ item.name }}
     </mat-option>
