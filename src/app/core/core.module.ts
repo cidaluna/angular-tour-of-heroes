@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './components/page-not-found.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 const COMPONENTS = [MessagesComponent, ToolbarComponent, PageNotFoundComponent, LoadingComponent, ConfirmationDialogComponent];
 const MODULES = [MaterialModule, RouterModule];
@@ -27,6 +28,11 @@ const MODULES = [MaterialModule, RouterModule];
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
       multi: true
     }
   ]

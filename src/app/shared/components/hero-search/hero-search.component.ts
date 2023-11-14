@@ -36,7 +36,7 @@ export class HeroSearchComponent implements OnInit{
   }
 
   onSelected(selectedItem: MatAutocompleteSelectedEvent): void {
-    this.searchTerm.next('');
+    this.searchTerm.next('');  // faz a limpeza do dropdown que aparece nas buscas
     const hero: Hero = selectedItem.option.value;
     this.selected.emit(hero); // emite um valor(hero) pra quem estiver ouvindo
   }
